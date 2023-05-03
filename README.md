@@ -5,3 +5,5 @@ Este modelo de site possui maiores interações em si, e por isso pode ser consi
  Esse site foi criado com base na aula do Alura (a plataforma que eu estudo).
 
 _Algumas alterações foram feitas e você também pode aproveitar os códigos disponibilizados aqui para criar o seu também! ;)_
+
+![](https://media.tenor.com/f61Fpec7INoAAAAi/mecha-anime.gif)
