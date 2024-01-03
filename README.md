@@ -1,4 +1,4 @@
-# NecroTron
+# NeoTron
 Este repositório foi criado para demonstrar um modelo de site web com JavaScript.
 
 Este modelo de site possui maiores interações em si, e por isso pode ser considerada mais avançada.
