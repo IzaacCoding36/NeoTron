@@ -2,6 +2,7 @@
     --main-cinza: #CCCCCC;
     --main-branco: #FFFFFF;
     --main-preto: #000000;
+    --main-ciano: cyan;
 }
 
 * {
@@ -43,6 +44,53 @@ main {
     position: absolute;
     left: -20%;
     top: -5%;
+}
+
+.botoesCores {
+    z-index: 99;
+}
+
+#btnAmarelo {
+    background-color: #ffba08;
+}
+
+#btnAzul {
+    background-color: #1e6091;
+}
+
+#btnBranco {
+    background-color: #FFFFFF;
+}
+
+#btnPreto {
+    background-color: #212529;
+}
+
+#btnRosa {
+    background-color: #DA4167;
+}
+
+#btnVermelho {
+    background-color: #6a040f;
+}
+
+.corRobo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25% 0 25% 0;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    box-shadow: 2px 2px 5px #00000080;
+}
+
+.corRobo:hover {
+    transition: 0.4s;
+    filter: contrast(2);
+    box-shadow: 0px 3px 5px #000000ce;
 }
 
 .titulo {
@@ -97,6 +145,7 @@ main {
     padding: 5px;
     align-items: center;
     align-self: flex-end;
+    box-shadow: 0px 0px 15px var(--main-ciano);
 }
 
 .controle-contador {
@@ -125,6 +174,14 @@ main {
     text-align: center;
     border: 3px solid var(--main-cinza);
     cursor: pointer;
+    transition: border 0.3s, background 0.3s, color 0.3s;
+}
+
+.controle-ajuste:hover {
+    background: var(--main-cinza);
+    color: var(--main-preto);
+    border: 3px solid var(--main-ciano);
+    transition: border 0.3s, background 0.3s, color 0.3s;
 }
 
 .linha {
@@ -149,8 +206,6 @@ main {
     color: var(--main-branco);
     transition: background 0.3s, color 0.3s;
 }
-
-
 
 /* Estatísticas */
 .estatisticas {
@@ -226,7 +281,6 @@ main {
     body { 
         font-size: 13px;
     }
-
     main {
         width: 96vw;
         height: 80vh;

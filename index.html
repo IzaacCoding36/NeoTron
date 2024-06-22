@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="IzaacCoding36">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Esse site foi criado para demonstrar um modelo de site web com JavaScript de uma maneira divertida.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Robô, Divertido, Personalização">
     <link rel="shortcut icon" type="image/jpg" href="img/favicon.ico"/>
     <title>NeoTron 3000</title>
     <link rel="stylesheet" href="css/style.css">
@@ -19,10 +21,19 @@
 <body>
     <main>
         <section class="robotron">
-            <img class="robo" src="img/robotron.png" alt="Robotron">
+            <img class="robo" src="img/robotron.png" alt="Robotron" id="robotron">
             <figcaption class="titulo">NeoTron <br>3000</figcaption>
         </section>
-
+        <div class="botoesCores">
+            <div class="buttonCores">
+                <button class="corRobo" onclick="changeColor('amarelo')" id="btnAmarelo"></button>
+                <button class="corRobo" onclick="changeColor('azul')" id="btnAzul"></button>
+                <button class="corRobo" onclick="changeColor('branco')" id="btnBranco"></button>
+                <button class="corRobo" onclick="changeColor('preto')" id="btnPreto"></button>
+                <button class="corRobo" onclick="changeColor('rosa')" id="btnRosa"></button>
+                <button class="corRobo" onclick="changeColor('vermelho')" id="btnVermelho"></button>
+            </div>
+        </div>
         <section class="box estatisticas">
             <div class="estatistica">
                 <p class="estatistica-titulo">Força</p>
@@ -49,7 +60,6 @@
                 </div>
             </div>
         </section>
-
         <section class="equipamentos">
             <form action="" class="montador">
                 <div class="box montador-conteudo">
@@ -57,7 +67,7 @@
                         <label for="" class="peca-titulo">Braços</label>
                         <div class="controle">
                             <buttom class="controle-ajuste" data-controle="-" data-peca="bracos">-</buttom>
-                            <input type="text" class="controle-contador" value="00" data-contador>
+                            <input type="text" class="controle-contador" value="0" data-contador>
                             <buttom class="controle-ajuste" data-controle="+" data-peca="bracos">+</buttom>
                         </div>
                     </div>
@@ -66,7 +76,7 @@
                         <label for="" class="peca-titulo">Blindagem</label>
                         <div class="controle">
                             <buttom class="controle-ajuste" data-controle="-" data-peca="blindagem">-</buttom>
-                            <input type="text" class="controle-contador" value="00" data-contador>
+                            <input type="text" class="controle-contador" value="0" data-contador>
                             <buttom class="controle-ajuste" data-controle="+" data-peca="blindagem">+</buttom>
                         </div>
                     </div>
@@ -75,7 +85,7 @@
                         <label for="" class="peca-titulo">Núcleos</label>
                         <div class="controle">
                             <buttom class="controle-ajuste" data-controle="-" data-peca="nucleos">-</buttom>
-                            <input type="text" class="controle-contador" value="00" data-contador>
+                            <input type="text" class="controle-contador" value="0" data-contador>
                             <buttom class="controle-ajuste" data-controle="+" data-peca="nucleos">+</buttom>
                         </div>
                     </div>
@@ -84,7 +94,7 @@
                         <label for="" class="peca-titulo">Pernas</label>
                         <div class="controle">
                             <buttom class="controle-ajuste" data-controle="-" data-peca="pernas">-</buttom>
-                            <input type="text" class="controle-contador" value="00" data-contador>
+                            <input type="text" class="controle-contador" value="0" data-contador>
                             <buttom class="controle-ajuste" data-controle="+" data-peca="pernas">+</buttom>
                         </div>
                     </div>
@@ -93,7 +103,7 @@
                         <label for="" class="peca-titulo">Foguetes</label>
                         <div class="controle">
                             <buttom class="controle-ajuste" data-controle="-" data-peca="foguetes">-</buttom>
-                            <input type="text" class="controle-contador" value="00" data-contador>
+                            <input type="text" class="controle-contador" value="0" data-contador>
                             <buttom class="controle-ajuste" data-controle="+" data-peca="foguetes">+</buttom>
                         </div>
                     </div>
@@ -102,7 +112,6 @@
             </form>
         </section>
     </main>
-
     <script src="js/main.js"></script>
 </body>
 </html>
