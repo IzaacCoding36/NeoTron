@@ -5,6 +5,8 @@
     --main-ciano: cyan;
 }
 
+html {background-color: var(--main-cinza);}
+
 * {
     box-sizing: border-box;
 }
