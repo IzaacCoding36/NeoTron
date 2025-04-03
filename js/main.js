@@ -41,7 +41,7 @@ const pecas = {
 controle.forEach((elemento) => {
     elemento.addEventListener("click", (evento) => {
         manipulaDados(evento.target.dataset.controle, evento.target.parentNode)
-        atualizaEstatisticas(evento.target.dataset.peca)
+        atualizaEstatisticas(evento.target.dataset.controle, evento.target.dataset.peca)
     })
 })
 
@@ -54,9 +54,13 @@ function manipulaDados(operacao, controle) {
     }
 }
 
-function atualizaEstatisticas(peca) {
+function atualizaEstatisticas(operacao, peca) {
     estatisticas.forEach((elemento) => {
-        elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+        if (operacao === "-") {
+            elemento.textContent = parseInt(elemento.textContent) - pecas[peca][elemento.dataset.estatistica]
+        } else {
+            elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
+        }
     })
 }
 
@@ -71,3 +75,11 @@ function changeColor(color) {
     newRobot.setAttribute("id", "robotron")
     area.appendChild(newRobot)
 }
+
+function playSoundLoop(audioFile) {
+    const audio = new Audio(audioFile);
+    audio.loop = true;
+    audio.play();
+}
+
+playSoundLoop("./som/NeoTron3000.mp3");
