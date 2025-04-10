@@ -8,7 +8,7 @@
 html {background: url(../img/fundo.jpg);
       background-size: 200% 200%;
       animation: gradientBG 40s ease infinite;
-      background-color: #490278;}
+      background-color: #AB0059;}
 
 * {box-sizing: border-box;}
 
@@ -108,7 +108,7 @@ main {width: 80vw;
 
 .equipamentos {flex-basis: 32%;}
 
-.montador {height: 100%;;}
+.montador {height: 100%;}
 
 .montador-conteudo {padding: 2em 10%;}
 
@@ -238,5 +238,96 @@ main {width: 80vw;
         width: 96vw;
         height: 80vh;
         margin: 10vh auto;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    main {
+        width: 96vw;
+        height: 100vw;
+        margin: 5vw auto;
+        top: 205px;
+        position: relative;
+    }
+    html {
+        animation: none;
+        background-size: 300% 300%;
+    }
+    .corRobo {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        top: -60px;
+        right: 200px;
+    }
+    .robotron {
+        width: 255px;
+        background: none;
+        box-shadow: none;
+        height: 255px;
+        position: relative;
+        top: -175px;
+    }
+    .robo {
+        background-color: #0000004a;
+        border-radius: 50px;
+        position: relative;
+        top: 80px;
+        left: 50px;
+        box-shadow: 0 0 12px #0000004a, 0 0 25px #0000004a, 0 0 50px #0000004a;
+    }
+    .titulo {
+        transform: rotate(270deg);
+        font-weight: 500;
+        font-size: 50px;
+        position: absolute;
+        bottom: 10rem;
+        left: 9rem;
+        z-index: 1;
+        background-color: none;
+        border-radius: none;
+        text-shadow: 0 0 12px teal, 0 0 25px teal, 0 0 50px teal;
+        box-shadow: none;
+        line-height: 0.8;
+        writing-mode: horizontal;
+        text-orientation: none;
+        color: rgba(255,255,255,0.8)
+    }
+    .producao {
+      position: absolute;
+      right: 80px;
+      top: 570px;
+    }
+    .box {
+      position: absolute;
+      width: 175px;
+      height: 370px;
+      top: 200px;
+      right: 10px;
+    }
+    .montador-conteudo {
+      position: absolute;
+      width: 150px;
+      height: 370px;
+      left: 10px;
+      top: 200px;
+      font-size: 7px;
+    }
+    .controle {
+      width: 120px;
+      height: 40px;
+      position: relative;
+      left: 25px;
+    }
+    .peca-titulo {
+      position: relative;
+      left: 10px;
+    }
+    .controle-ajuste {
+      height: 35px;
+      border: none;
+    }
+    .controle-ajuste:hover {
+      border: none;
     }
 }
