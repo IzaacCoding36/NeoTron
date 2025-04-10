@@ -76,10 +76,8 @@ function changeColor(color) {
     area.appendChild(newRobot)
 }
 
-function playSoundLoop(audioFile) {
-    const audio = new Audio(audioFile);
-    audio.loop = true;
-    audio.play();
-}
-
-playSoundLoop("./som/NeoTron3000.mp3");
+const audio = new Audio('./som/NeoTron3000.mp3');
+audio.loop = true;
+audio.play().catch(error => {
+    console.log("Erro ao reproduzir o áudio:", error);
+});
