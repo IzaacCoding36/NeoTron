@@ -94,6 +94,7 @@ main {width: 80vw;
 .box {background: rgba(0,0,0,0.6);
       clip-path: polygon(calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px), 0 30px, 30px 0);
       border-left: 5px outset var(--main-ciano);
+      text-shadow: 0px 0px 5px var(--main-ciano);
       height: 80%;}
 
 /* Equipamentos */
@@ -228,11 +229,20 @@ main {width: 80vw;
         height: 80vh;
         margin: 5vh auto;
     }
+    .box {
+        font-size: 13px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
     body { 
         font-size: 13px;
+    }
+    .robo {
+        height: 70%;
+    }
+    .box {
+        font-size: 12px;
     }
     main {
         width: 96vw;
