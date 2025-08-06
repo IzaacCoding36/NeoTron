@@ -3,12 +3,17 @@
     --main-branco: #FFFFFF;
     --main-preto: #000000;
     --main-ciano: cyan;
+    --main-rosa: #AB0059;
+    --main-azul-escuro: #0a1831;
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --glow-cyan: 0 0 5px var(--main-ciano), 0 0 10px var(--main-ciano), 0 0 15px var(--main-ciano);
 }
 
 html {background: url(../img/fundo.jpg);
       background-size: 200% 200%;
       animation: gradientBG 40s ease infinite;
-      background-color: #AB0059;}
+      background-color: var(--main-rosa);
+      scroll-behavior: smooth;}
 
 * {box-sizing: border-box;}
 
@@ -17,7 +22,8 @@ body {background-position: center center;
       padding: 0;
       margin: 0;
       cursor: default;
-      font-weight: 300;}
+      font-weight: 300;
+      overflow-x: hidden;}
 
 body, input {font-family: 'Teko', sans-serif;}
 
@@ -25,7 +31,8 @@ main {width: 80vw;
       height: 80vh;
       margin: 10vh 8vw 10vh 12vw;
       display: flex;
-      gap: 1vw;}
+      gap: 1vw;
+      animation: fadeInMain 1s ease-out;}
 
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
@@ -38,6 +45,32 @@ main {width: 80vw;
     50% { box-shadow: 0 0 15px var(--main-ciano); }
 }
 
+@keyframes fadeInMain {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes robotGlow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3)); 
+    }
+    50% { 
+        filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6)); 
+    }
+}
+
+@keyframes buttonHover {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
 .robotron {background: url(../img/estrutura.png) no-repeat;
            background-position: center center;
            background-color: #0000004a;
@@ -45,15 +78,26 @@ main {width: 80vw;
            box-shadow: 0 0 12px #0000004a, 0 0 25px #0000004a, 0 0 50px #0000004a;
            margin: 0;
            flex-basis: 40%;
-           position: relative;}
+           position: relative;
+           transition: var(--transition-smooth);}
+
+.robotron:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 0 20px #0000006a, 0 0 35px #0000006a, 0 0 60px #0000006a;}
 
 .robo {height: 110%;
        z-index: 1;
        position: absolute;
        left: -20%;
-       top: -5%;}
+       top: -5%;
+       animation: robotGlow 3s ease-in-out infinite;
+       transition: var(--transition-smooth);}
 
-.botoesCores {z-index: 99;}
+.robo:hover {
+       animation-duration: 1.5s;}
+
+.botoesCores {z-index: 99;
+              animation: fadeInMain 1.2s ease-out 0.3s both;}
 
 #btnAmarelo {background-color: #ffba08; border: 4px outset var(--main-preto); box-shadow: 0 0 5px orange, 0 0 10px orange, 0 0 15px orange;}
 
@@ -76,9 +120,32 @@ main {width: 80vw;
           border: none;
           cursor: pointer;
           margin-right: 5px;
-          box-shadow: 2px 2px 5px #00000080;}
+          box-shadow: 2px 2px 5px #00000080;
+          transition: var(--transition-smooth);
+          position: relative;
+          overflow: hidden;}
 
-.corRobo:hover {transition: 0.4s; filter: contrast(2); box-shadow: 0px 3px 5px #000000ce;}
+.corRobo::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          transition: left 0.5s;}
+
+.corRobo:hover {
+          transform: translateY(-3px) scale(1.1); 
+          filter: contrast(1.5) brightness(1.2); 
+          box-shadow: 0px 5px 15px #000000ce;
+          animation: buttonHover 0.6s ease;}
+
+.corRobo:hover::before {
+          left: 100%;}
+
+.corRobo:active {
+          transform: translateY(-1px) scale(1.05);}
 
 .titulo {transform: rotate(180deg);
          font-weight: 500;
@@ -89,13 +156,23 @@ main {width: 80vw;
          line-height: 0.8;
          writing-mode: vertical-rl;
          text-orientation: mixed;
-         color: rgba(255,255,255,0.8)}
+         color: rgba(255,255,255,0.8);
+         text-shadow: 0 0 20px var(--main-ciano);
+         animation: fadeInMain 1.5s ease-out 0.6s both;}
 
-.box {background: rgba(0,0,0,0.6);
+.box {background: rgba(0,0,0,0.7);
       clip-path: polygon(calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px), 0 30px, 30px 0);
       border-left: 5px outset var(--main-ciano);
       text-shadow: 0px 0px 5px var(--main-ciano);
-      height: 80%;}
+      height: 80%;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(5px);
+      animation: fadeInMain 1s ease-out 0.9s both;}
+
+.box:hover {
+      background: rgba(0,0,0,0.8);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
 
 /* Equipamentos */
 
@@ -151,11 +228,33 @@ main {width: 80vw;
                   text-align: center;
                   border: 3px outset var(--main-cinza);
                   cursor: pointer;
-                  transition: border 1s, background 1s, color 1s;}
+                  transition: var(--transition-smooth);
+                  position: relative;
+                  overflow: hidden;}
+
+.controle-ajuste::before {
+                  content: '';
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  width: 0;
+                  height: 0;
+                  background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%);
+                  transform: translate(-50%, -50%);
+                  border-radius: 50%;
+                  transition: all 0.3s ease;}
 
 .controle-ajuste:hover {color: var(--main-ciano);
                         border: 3px outset var(--main-ciano);
-                        transition: border 1s, background 1s, color 1s;}
+                        transform: scale(1.1);
+                        box-shadow: var(--glow-cyan);}
+
+.controle-ajuste:hover::before {
+                        width: 100%;
+                        height: 100%;}
+
+.controle-ajuste:active {
+                        transform: scale(0.95);}
 
 .linha {box-shadow: 0px 0px 5px var(--main-ciano); background: linear-gradient(to right, transparent, var(--main-ciano), transparent); border: none; height: 1px; animation: pulse 2s infinite;}
 
@@ -168,14 +267,31 @@ main {width: 80vw;
            background: var(--main-branco);
            clip-path: polygon(100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 0);
            cursor: pointer;
-           transition: background 1s, border 1s, box-shadow 1s;
-}
+           transition: var(--transition-smooth);
+           position: relative;
+           overflow: hidden;}
+
+.producao::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: -100%;
+           width: 100%;
+           height: 100%;
+           background: linear-gradient(90deg, transparent, rgba(0,255,255,0.3), transparent);
+           transition: left 0.6s;}
 
 .producao:hover {background: var(--main-preto);
                  color: var(--main-ciano);
                  border-color: var(--main-ciano);
-                 box-shadow: 0px 0px 5px var(--main-ciano);
-                 transition: background 1s, color 1s, box-shadow 1s;}
+                 box-shadow: var(--glow-cyan);
+                 transform: translateY(-3px) scale(1.05);}
+
+.producao:hover::before {
+                 left: 100%;}
+
+.producao:active {
+                 transform: translateY(-1px) scale(1.02);}
 
 /* Estatísticas */
 .estatisticas {flex-basis: 23%; padding: 2em 2em 0;}
@@ -251,93 +367,534 @@ main {width: 80vw;
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
     main {
-        width: 96vw;
-        height: 100vw;
-        margin: 5vw auto;
-        top: 205px;
-        position: relative;
+        width: 95vw;
+        height: auto;
+        margin: 2vh auto;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem;
     }
-    html {
-        animation: none;
-        background-size: 300% 300%;
-    }
-    .corRobo {
-        width: 25px;
-        height: 25px;
-        position: relative;
-        top: -60px;
-        right: 200px;
-    }
+    
+    /* Robot section - make it more compact */
     .robotron {
-        width: 255px;
-        background: none;
-        box-shadow: none;
-        height: 255px;
-        position: relative;
-        top: -175px;
+        flex-basis: auto;
+        height: 300px;
+        width: 100%;
+        background-size: contain;
+        background-position: center;
+        margin-bottom: 1rem;
     }
+    
     .robo {
-        background-color: #0000004a;
-        border-radius: 50px;
-        position: relative;
-        top: 80px;
-        left: 50px;
-        box-shadow: 0 0 12px #0000004a, 0 0 25px #0000004a, 0 0 50px #0000004a;
+        height: 80%;
+        left: 50%;
+        top: 10%;
+        transform: translateX(-50%);
     }
+    
     .titulo {
-        transform: rotate(270deg);
-        font-weight: 500;
-        font-size: 50px;
+        transform: rotate(0deg);
+        font-size: 3rem;
         position: absolute;
-        bottom: 10rem;
-        left: 9rem;
-        z-index: 1;
-        background-color: none;
-        border-radius: none;
-        text-shadow: 0 0 12px teal, 0 0 25px teal, 0 0 50px teal;
-        box-shadow: none;
-        line-height: 0.8;
-        writing-mode: horizontal;
-        text-orientation: none;
-        color: rgba(255,255,255,0.8)
+        bottom: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        writing-mode: horizontal-tb;
+        text-orientation: initial;
+        text-align: center;
+        white-space: nowrap;
     }
-    .producao {
-      position: absolute;
-      right: 80px;
-      top: 570px;
+    
+    /* Color buttons - make them more accessible */
+    .botoesCores {
+        order: 1;
+        margin: 1rem 0;
     }
-    .box {
-      position: absolute;
-      width: 175px;
-      height: 370px;
-      top: 200px;
-      right: 10px;
+    
+    .buttonCores {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
     }
+    
+    .corRobo {
+        width: 45px;
+        height: 45px;
+        position: static;
+        margin: 0;
+    }
+    
+    /* Statistics section */
+    .estatisticas {
+        flex-basis: auto;
+        order: 2;
+        padding: 1rem;
+        width: 100%;
+    }
+    
+    .estatistica {
+        height: auto;
+        margin-bottom: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .estatistica-titulo {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        flex-basis: auto;
+        order: 1;
+    }
+    
+    .estatistica-valor {
+        flex-basis: auto;
+        order: 2;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+    }
+    
+    .estatistica-numero {
+        font-size: 2rem;
+    }
+    
+    /* Equipment section */
+    .equipamentos {
+        flex-basis: auto;
+        order: 3;
+        width: 100%;
+    }
+    
     .montador-conteudo {
-      position: absolute;
-      width: 150px;
-      height: 370px;
-      left: 10px;
-      top: 200px;
-      font-size: 7px;
+        padding: 1rem;
     }
-    .controle {
-      width: 120px;
-      height: 40px;
-      position: relative;
-      left: 25px;
+    
+    .peca {
+        padding: 0.8rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
+    
     .peca-titulo {
-      position: relative;
-      left: 10px;
+        font-size: 1.4rem;
+        flex: 1;
     }
+    
+    .controle {
+        position: static;
+        width: auto;
+        min-width: 120px;
+    }
+    
+    .controle-contador {
+        width: 35px;
+        height: 30px;
+        font-size: 1.5rem;
+    }
+    
     .controle-ajuste {
-      height: 35px;
-      border: none;
+        width: 35px;
+        height: 35px;
+        font-size: 2rem;
+        line-height: 35px;
     }
-    .controle-ajuste:hover {
-      border: none;
+    
+    .producao {
+        position: static;
+        margin: 1rem auto 0;
+        font-size: 1.2rem;
+        padding: 0.5rem 1.5rem;
+        display: block;
+        width: fit-content;
     }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+    main {
+        margin: 1vh auto;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .robotron {
+        height: 250px;
+    }
+    
+    .titulo {
+        font-size: 2.5rem;
+    }
+    
+    .corRobo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .estatistica-valor {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .estatistica-numero {
+        font-size: 1.6rem;
+    }
+    
+    .peca-titulo {
+        font-size: 1.2rem;
+    }
+    
+    .controle-contador {
+        font-size: 1.3rem;
+    }
+    
+    .controle-ajuste {
+        width: 30px;
+        height: 30px;
+        font-size: 1.8rem;
+        line-height: 30px;
+    }
+}
+
+/* Production Modal Styles */
+.production-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.production-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, var(--main-azul-escuro), var(--main-preto));
+    border: 3px solid var(--main-ciano);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    color: var(--main-branco);
+    box-shadow: var(--glow-cyan), 0 0 50px rgba(0,0,0,0.5);
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    animation: modalSlideIn 0.5s ease-out forwards;
+}
+
+.production-modal.show .modal-content {
+    transform: scale(1);
+}
+
+@keyframes modalSlideIn {
+    0% {
+        transform: translateY(-50px) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    color: var(--main-ciano);
+    text-shadow: 0 0 10px var(--main-ciano);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.stats-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    border: 1px solid var(--main-ciano);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: var(--main-cinza);
+}
+
+.stat-value {
+    color: var(--main-ciano);
+    font-size: 1.2em;
+    text-shadow: 0 0 5px var(--main-ciano);
+}
+
+.close-modal {
+    background: var(--main-ciano);
+    color: var(--main-preto);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+}
+
+.close-modal:hover {
+    background: var(--main-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,255,255,0.3);
+}
+
+/* Mobile modal styles */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        padding: 1.5rem;
+        border-radius: 15px;
+        max-width: 90%;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stats-summary {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        margin: 1rem 0;
+        padding: 0.8rem;
+    }
+    
+    .stat-item {
+        padding: 0.3rem 0;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+    
+    .stat-value {
+        font-size: 1.1rem;
+    }
+    
+    .close-modal {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Accessibility improvements */
+.corRobo:focus,
+.controle-ajuste:focus,
+.producao:focus {
+    outline: 2px solid var(--main-ciano);
+    outline-offset: 2px;
+}
+
+/* Loading animation for page load */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.equipamentos {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.estatisticas {
+    animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+/* Help System Styles */
+.help-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--main-ciano);
+    color: var(--main-preto);
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 999;
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 10px rgba(0,255,255,0.3);
+}
+
+.help-button:hover {
+    background: var(--main-branco);
+    transform: scale(1.1);
+    box-shadow: var(--glow-cyan);
+}
+
+@media screen and (max-width: 768px) {
+    .help-button {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+        font-size: 1.3rem;
+    }
+}
+
+.help-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.help-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.help-content {
+    background: linear-gradient(135deg, var(--main-azul-escuro), var(--main-preto));
+    border: 3px solid var(--main-ciano);
+    border-radius: 20px;
+    padding: 2rem;
+    color: var(--main-branco);
+    box-shadow: var(--glow-cyan);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.help-overlay.show .help-content {
+    transform: scale(1);
+}
+
+.help-content h3 {
+    color: var(--main-ciano);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px var(--main-ciano);
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.help-section {
+    background: rgba(0,0,0,0.3);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--main-ciano);
+}
+
+.help-section h4 {
+    color: var(--main-ciano);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.help-section p {
+    color: var(--main-cinza);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Mobile help styles */
+@media screen and (max-width: 768px) {
+    .help-content {
+        padding: 1.5rem;
+        border-radius: 15px;
+        max-height: 85vh;
+    }
+    
+    .help-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .help-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .help-section {
+        padding: 1rem;
+    }
+    
+    .help-section h4 {
+        font-size: 1.1rem;
+    }
+    
+    .help-section p {
+        font-size: 0.9rem;
+    }
+}
+
+.close-help {
+    background: var(--main-ciano);
+    color: var(--main-preto);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    display: block;
+    margin: 0 auto;
+}
+
+.close-help:hover {
+    background: var(--main-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,255,255,0.3);
 }
