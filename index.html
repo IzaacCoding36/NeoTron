@@ -26,12 +26,12 @@
         </section>
         <div class="botoesCores">
             <div class="buttonCores">
-                <button class="corRobo" onclick="changeColor('amarelo')" id="btnAmarelo"></button>
-                <button class="corRobo" onclick="changeColor('azul')" id="btnAzul"></button>
-                <button class="corRobo" onclick="changeColor('branco')" id="btnBranco"></button>
-                <button class="corRobo" onclick="changeColor('preto')" id="btnPreto"></button>
-                <button class="corRobo" onclick="changeColor('rosa')" id="btnRosa"></button>
-                <button class="corRobo" onclick="changeColor('vermelho')" id="btnVermelho"></button>
+                <button class="corRobo" onclick="changeColor('amarelo')" id="btnAmarelo" title="Cor Amarela (Tecla 1)"></button>
+                <button class="corRobo" onclick="changeColor('azul')" id="btnAzul" title="Cor Azul (Tecla 2)"></button>
+                <button class="corRobo" onclick="changeColor('branco')" id="btnBranco" title="Cor Branca (Tecla 3)"></button>
+                <button class="corRobo" onclick="changeColor('preto')" id="btnPreto" title="Cor Preta (Tecla 4)"></button>
+                <button class="corRobo" onclick="changeColor('rosa')" id="btnRosa" title="Cor Rosa (Tecla 5)"></button>
+                <button class="corRobo" onclick="changeColor('vermelho')" id="btnVermelho" title="Cor Vermelha (Tecla 6)"></button>
             </div>
         </div>
         <section class="box estatisticas">
@@ -108,10 +108,40 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Iniciar produção" class="producao" id="producao" onclick="alert('Robô Produzido!')">
+                <input type="submit" value="Iniciar produção" class="producao" id="producao" onclick="event.preventDefault(); completeProduction();" title="Finalizar produção do robô (Enter)">
             </form>
         </section>
     </main>
+    
+    <!-- Help/Instructions overlay -->
+    <div class="help-overlay" id="helpOverlay">
+        <div class="help-content">
+            <h3>🎮 Como usar o NeoTron 3000</h3>
+            <div class="help-grid">
+                <div class="help-section">
+                    <h4>🎨 Cores</h4>
+                    <p>Clique nos botões coloridos ou use as teclas 1-6 para trocar a cor do robô</p>
+                </div>
+                <div class="help-section">
+                    <h4>⚡ Estatísticas</h4>
+                    <p>Use os botões + e - para ajustar as peças e ver as estatísticas mudarem</p>
+                </div>
+                <div class="help-section">
+                    <h4>🚀 Produção</h4>
+                    <p>Pressione "Iniciar Produção" ou Enter para finalizar seu robô</p>
+                </div>
+                <div class="help-section">
+                    <h4>🎵 Áudio</h4>
+                    <p>A música de fundo toca automaticamente. Clique em qualquer lugar se não ouvir</p>
+                </div>
+            </div>
+            <button class="close-help" onclick="toggleHelp()">Entendi!</button>
+        </div>
+    </div>
+    
+    <!-- Help button -->
+    <button class="help-button" onclick="toggleHelp()" title="Ajuda (H)">?</button>
+    
     <script src="js/main.js"></script>
 </body>
 </html>
