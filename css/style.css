@@ -296,29 +296,37 @@ main {width: 80vw;
                  transform: translateY(-1px) scale(1.02);}
 
 /* Estatísticas */
-.estatisticas {flex-basis: 23%; padding: 2em 2em 0;}
+.estatisticas {
+    flex-basis: 23%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
 
 .estatistica {
-              color: var(--main-branco);
-              display: inline-block;
-              padding: 2rem;
-              align-items: flex-start;
-              height: 25%;
-              }
+    color: var(--main-branco);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 .estatistica-titulo {
-                     font-size: 1.5em;
-                     border-bottom: 1px outset var(--main-ciano);
-                     flex-basis: 40%;
-                     text-transform: uppercase;
-                     order: 1;
-                     }
+    font-size: 1.5em;
+    border-bottom: 1px outset var(--main-ciano);
+    padding-bottom: 0.2em;
+    text-transform: uppercase;
+    flex-grow: 1;
+}
 
-.estatistica-valor {flex-basis: 60%;
-                    position: relative;
-                    margin: 10px 0 0;
-                    order: 2;
-                    margin: -10px 0 0;}
+.estatistica-valor {
+    flex-basis: 80px;
+    flex-shrink: 0;
+    height: 80px;
+    position: relative;
+    margin-left: 1rem;
+}
 
 .estatistica-valor::after {
                            content: "";
@@ -335,16 +343,12 @@ main {width: 80vw;
 .estatistica-numero {
                      position: absolute;
                      top: 50%;
-                     transform: translateY(-46%);
+                     transform: translateY(-50%);
                      width: 100%;
-                     line-height: 100%;
+                     line-height: 1;
                      text-align: center;
                      font-size: 3em;
                      }
-
-.estatistica:nth-child(2n) .estatistica-titulo {order: 2; text-align: right;}
-
-.estatistica:nth-child(2n) .estatistica-valor {order: 1; flex-basis: 35%; margin: 10px 0 0;}
 
 @media screen and (max-width: 1600px) {
     body { 
@@ -445,35 +449,44 @@ main {width: 80vw;
     .estatisticas {
         flex-basis: auto;
         order: 2;
-        padding: item;
+        padding: 1rem;
         width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
     
     .estatistica {
         height: auto;
-        margin-bottom: 1rem;
+        margin: 0;
+        padding: 0.5rem;
         flex-direction: column;
         text-align: center;
-        margin: 0px;
+        background: rgba(0,0,0,0.2);
+        border-radius: 10px;
+        justify-content: center;
     }
     
     .estatistica-titulo {
-        font-size: 1.2rem;
-        margin-bottom: 0.9rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
         flex-basis: auto;
         order: 1;
+        border-bottom: none;
+        padding-bottom: 0;
+        text-align: center;
     }
     
     .estatistica-valor {
         flex-basis: auto;
         order: 2;
-        width: 60px;
-        height: 60px;
-        margin: 6 auto;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
     }
     
     .estatistica-numero {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     /* Equipment section */
